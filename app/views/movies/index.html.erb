@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <%= link_to "War", movies_path(status: "War"), class: "btn btn-primary"  %>
+      <%= link_to "Gotham", movies_path(city: "Gotham"), class: "btn btn-primary"  %>
+      <%= link_to "Batman", movies_path(character: "Batman"), class: "btn btn-primary"  %>
+      <%= form_tag movies_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a movie"
+        %>
+        <%= text_field_tag :status,
+          params[:status],
+          class: "form-control",
+          placeholder: "Find a movie"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+      <div id="movies">
+        <% @movies.each do |movie| %>
+          <h4><%= movie.title %></h4>
+          <p><%= movie.synopsis %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<%#= link_to "Accept booking", booking_path(@booking, query: "Accept"), method: :patch  %>
+<%#= link_to "Reject booking", booking_path(@booking, query: "Reject"), method: :patch  %>
